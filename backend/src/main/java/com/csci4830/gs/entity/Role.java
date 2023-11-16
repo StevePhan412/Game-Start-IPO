@@ -1,7 +1,6 @@
 package com.csci4830.gs.entity;
 
-import jakarta.persistence.*;
-import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")

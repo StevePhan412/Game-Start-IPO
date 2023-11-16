@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.3</version>
+		<version>2.1.13.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.csci4830</groupId>
@@ -15,11 +15,11 @@
 	<name>gs</name>
 	<description>Final Project - Gaming Store</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+    	<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -68,6 +68,12 @@
 			<artifactId>javax.persistence-api</artifactId>
 			<version>2.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.8.1</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
@@ -76,7 +82,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>3.1.3</version>
 				<configuration>
 					<excludes>
 						<exclude>

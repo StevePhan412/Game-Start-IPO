@@ -1,6 +1,6 @@
 package com.csci4830.gs.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 

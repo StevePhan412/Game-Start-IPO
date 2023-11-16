@@ -1,6 +1,6 @@
 package com.csci4830.gs.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "products")
