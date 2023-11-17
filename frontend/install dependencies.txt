@@ -1,0 +1,11 @@
+react + vite + tailwind to run app as expected see tailwind doc for react + vite
+-------------------------- others -------------
+npm install --save react-router-hash-link
+npm install react-router-dom@6
+
+-------------------------- fontawesome utilities-----
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/free-regular-svg-icons
+npm i --save @fortawesome/free-brands-svg-icons
+--------------------- axios not install yet
+npm install axios
