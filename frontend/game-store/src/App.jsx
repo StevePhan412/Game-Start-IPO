@@ -14,7 +14,7 @@ function App() {
   const [triggerSiderBar, setTriggerSideBar] = useState(false)
   const [counterItems, setCounterItems] = useState(0)
   const [search, setSearch] = useState('')
-  const [selectedPrice, setSelectedPrice] = useState('')
+  const [selectedPrice, setSelectedPrice] = useState('none')
 
   const isSignIn = location.pathname.includes('/signin')
   const isSingnUp = location.pathname.includes('/signup')
