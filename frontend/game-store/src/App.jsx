@@ -8,6 +8,8 @@ import SignIn from './components/signin/SignIn'
 import SignUp from './components/signin/SignUp'
 import ChangePassword from './components/signin/changepassword/changepassword'
 import ResetPassword from './components/signin/changepassword/ResetPassword'
+import Cart from './components/cart/Cart'
+import Wishlist from './components/wishlist/Wishlist'
 
 function App() {
   const location = useLocation()
@@ -21,7 +23,7 @@ function App() {
 
   return (
     <>
-    <div className='relative min-w-[400px]'>
+    <div className='relative min-w-[400px] select-none'>
     {(!isSignIn && !isSingnUp) && 
       (
         <Navbar setTriggerSideBar={setTriggerSideBar} counterItems={counterItems} search={search} setSearch={setSearch}/>
@@ -32,11 +34,12 @@ function App() {
         <div className='w-[1500px] '>
         <Routes>
             <Route path='/' element={<LandingPage search={search} setCounterItems={setCounterItems} selectedPrice={selectedPrice}/>}/>
-            <Route path='/cart' />
             <Route path='/signin' element={<SignIn/>}/>
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/signin/changepassword' element={<ChangePassword/>}/>
             <Route path='/signin/resetpassword' element={<ResetPassword/>}/>
+            <Route path='/cart' element={<Cart/>}/>
+            <Route path='/wishlist' element={<Wishlist/>}/>
           </Routes>
         </div>
       </div> 
