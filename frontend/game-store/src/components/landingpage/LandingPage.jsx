@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import GameCard from '../commons/gamecard/GameCard'
 
 const dummyGames = 
@@ -18,6 +18,16 @@ const dummyGames =
 ]
 
 export default function LandingPage({setCounterItems, search, selectedPrice}) {
+  const [games, setGames] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const fetchGames = async () =>
+    {
+      setLoading(true)
+    }
+
+  }, [])
 
   const filteredGamesName = dummyGames.filter((game) => game.name.toLowerCase().includes(search.toLowerCase()));
 
