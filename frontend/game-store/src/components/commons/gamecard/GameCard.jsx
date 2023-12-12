@@ -11,13 +11,17 @@ export default function GameCard({name, description, price, setCounterItems, ima
 
     useEffect(() => {
         // Check if any item is in the wishlist and update the heartIcon accordingly
-        const hasItemInWishlist = loggedInUser.wishlist.some(item => item.name === name && item.added);
-        if (hasItemInWishlist) {
-            setHeartIcon(heartSol);
-        } else {
-            setHeartIcon(heartReg);
+        if(loggedInUser && loggedInUser.wishlist) 
+        {
+            const hasItemInWishlist = loggedInUser.wishlist.some(item => item.name === name && item.added);
+            if (hasItemInWishlist) {
+                setHeartIcon(heartSol);
+            } else {
+                setHeartIcon(heartReg);
+            }
         }
-    }, [loggedInUser.wishlist, name]);
+    }, []);
+
 
     const handleAddToCart = (e) =>{
         if(!isLoggedIn){

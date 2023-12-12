@@ -27,29 +27,31 @@ function App() {
 
   useEffect(() => {
     const updateLoggedInState = () => {
-      const storedValue = localStorage.getItem('loggedIn')
-      if(storedValue === 'true'){
-        setLoggedIn(true)
+      const storedValue = localStorage.getItem('loggedIn');
+      if (storedValue === 'true') {
+        setLoggedIn(true);
+        // Set loggedInUser from localStorage or an API call
+        const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        setLoggedInUser(storedUser); // Make sure loggedInUser is set correctly
+      } else {
+        setLoggedIn(false);
       }
-      else{
-        setLoggedIn(false)
+    };
+  
+    updateLoggedInState();
+  
+    const handleStorageChange = (e) => {
+      if (e.key === 'loggedIn') {
+        updateLoggedInState();
       }
-    }
-    //Set initital loggedIn state based on localStorage
-    updateLoggedInState()
-    //Listen for changes in localStorage for loggedIn key
-    const handleStorageChange = (e) =>{
-      if(e.key === 'loggedIn'){
-        updateLoggedInState()
-      }
-    }
-
-    window.addEventListener('storage', handleStorageChange)
-    //Clean up the event listener when the component unmounts
-    return () =>{
-      window.removeEventListener('storage', handleStorageChange)
-    }
-  },[])
+    };
+  
+    window.addEventListener('storage', handleStorageChange);
+  
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   return (
     <>
@@ -69,7 +71,7 @@ function App() {
             <Route path='/signin/changepassword' element={<ChangePassword/>}/>
             <Route path='/signin/resetpassword' element={<ResetPassword/>}/>
             <Route path='/cart' element={<Cart loggedInUser={loggedInUser} setCounterItems={setCounterItems}/>}/>
-            <Route path='/wishlist' element={<Wishlist loggedInUser={loggedInUser}/>}/>
+            <Route path='/wishlist' element={<Wishlist loggedInUser={loggedInUser} setCounterItems={setCounterItems}/>}/>
             <Route path='/account' element={<Account setLoggedIn={setLoggedIn}/>}/>
           </Routes>
         </div>
