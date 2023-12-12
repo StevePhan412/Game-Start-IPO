@@ -9,6 +9,16 @@ export default function GameCard({name, description, price, setCounterItems, ima
     const [quantity, setQuantity] = useState(1)
     const [heartIcon, setHeartIcon] = useState(heartReg)
 
+    useEffect(() => {
+        // Check if any item is in the wishlist and update the heartIcon accordingly
+        const hasItemInWishlist = loggedInUser.wishlist.some(item => item.name === name && item.added);
+        if (hasItemInWishlist) {
+            setHeartIcon(heartSol);
+        } else {
+            setHeartIcon(heartReg);
+        }
+    }, [loggedInUser.wishlist, name]);
+
     const handleAddToCart = (e) =>{
         if(!isLoggedIn){
             e.preventDefault()
@@ -52,7 +62,7 @@ export default function GameCard({name, description, price, setCounterItems, ima
                     {
                         name: name,
                         price: price,
-                        wishlist: true,
+                        added: true,
                     })
                 setHeartIcon(heartSol)
                 alert('Game added to wishlist')
