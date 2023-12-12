@@ -49,7 +49,7 @@ function App() {
     return () =>{
       window.removeEventListener('storage', handleStorageChange)
     }
-  },[setLoggedIn])
+  },[])
 
   return (
     <>
@@ -69,7 +69,7 @@ function App() {
             <Route path='/signin/changepassword' element={<ChangePassword/>}/>
             <Route path='/signin/resetpassword' element={<ResetPassword/>}/>
             <Route path='/cart' element={<Cart loggedInUser={loggedInUser} setCounterItems={setCounterItems}/>}/>
-            <Route path='/wishlist' element={<Wishlist/>}/>
+            <Route path='/wishlist' element={<Wishlist loggedInUser={loggedInUser}/>}/>
             <Route path='/account' element={<Account setLoggedIn={setLoggedIn}/>}/>
           </Routes>
         </div>

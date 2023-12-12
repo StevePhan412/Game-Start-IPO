@@ -10,7 +10,7 @@ class User {
     }
 
     addToWishlist(item){
-        this.cart.push(item);
+        this.wishlist.push(item);
     }
 }
 

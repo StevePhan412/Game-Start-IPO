@@ -1,11 +1,13 @@
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as heartReg } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as heartSol} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCartPlus } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function GameCard({name, description, price, setCounterItems, imageUrl, isLoggedIn, loggedInUser}) {
     const [quantity, setQuantity] = useState(1)
+    const [heartIcon, setHeartIcon] = useState(heartReg)
 
     const handleAddToCart = (e) =>{
         if(!isLoggedIn){
@@ -19,7 +21,7 @@ export default function GameCard({name, description, price, setCounterItems, ima
                 const updatedCart = [...loggedInUser.cart]
                 updatedCart[isItemInCart].quantity += 1;
 
-                loggedInUser.cart(updatedCart)
+                loggedInUser.cart = updatedCart
                 
             }
             else{
@@ -42,6 +44,28 @@ export default function GameCard({name, description, price, setCounterItems, ima
             e.preventDefault()
             alert('Please Log In in order to add to the Wishlist')
         }
+        else{
+            const isItemInWishlist = loggedInUser.wishlist.findIndex((item) => item.name === name)
+
+            if(isItemInWishlist === -1){
+                loggedInUser.addToWishlist(
+                    {
+                        name: name,
+                        price: price,
+                        wishlist: true,
+                    })
+                setHeartIcon(heartSol)
+                alert('Game added to wishlist')
+            }
+            else{
+                const updatedWishlist = [...loggedInUser.wishlist]
+                updatedWishlist.splice(isItemInWishlist, 1)
+                loggedInUser.wishlist = updatedWishlist
+                setHeartIcon(heartReg)
+                alert('Game remove from wishlist')
+            }
+                
+        }
     }
 
   return (
@@ -58,7 +82,7 @@ export default function GameCard({name, description, price, setCounterItems, ima
                 <p className="font-bold text-xl">${price}</p>
                 <div>
                     <FontAwesomeIcon onClick={handleAddToCart} className="h-6 w-6 hover:cursor-pointer p-3" icon={faCartPlus} />
-                    <FontAwesomeIcon onClick={handleAddToWishlist} className="h-6 w-6 hover:cursor-pointer p-3" icon={faHeart}/>
+                    <FontAwesomeIcon onClick={handleAddToWishlist} className="h-6 w-6 hover:cursor-pointer p-3" icon={heartIcon}/>
                 </div>
             </div>
         </div>
