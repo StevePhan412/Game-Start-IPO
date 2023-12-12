@@ -16,7 +16,7 @@ export default function Wishlist({loggedInUser, setCounterItems}) {
         <div className="flex flex-col w-full mt-10 justify-between items-center px-5 md:px-10 lg:px-20">
             {loggedInUser.wishlist.map((item, index) => 
               (
-                <WishlistCard key={index} name={item.name} price={item.price} setCounterItems={setCounterItems} onRemoveItem={handleRemoveItem} index={index}/>
+                <WishlistCard key={index} name={item.name} price={item.price} setCounterItems={setCounterItems} loggedInUser={loggedInUser} onRemoveItem={handleRemoveItem} index={index}/>
               ))}
             
         </div>

@@ -5,19 +5,24 @@ import React from 'react'
 export default function WishlistCard({name, price, loggedInUser, setCounterItems, onRemoveItem, index}) {
 
   const handleAddToCart = () =>{
-    const itemInCart = loggedInUser.cart.some((item) => item.name === name)
-    if(!itemInCart){
-      loggedInUser.addToCart(
-        {
-          name: name,
-          price: price,
-          quantity: 1
-        })
-        setCounterItems(prevCount => prevCount + 1)
-    }
-    else{
-      alert('This item is already in your cart!')
-    }
+    if(loggedInUser?.cart){
+      const itemInCart = loggedInUser.cart.some((item) => item.name === name)
+      if(!itemInCart){
+        loggedInUser.addToCart(
+          {
+            name: name,
+            price: price,
+            quantity: 1
+          })
+          setCounterItems(prevCount => prevCount + 1)
+      }
+      else{
+        alert('This item is already in your cart!')
+      }
+  }
+  else{
+    console.error('loggedInUser or cart is undefined')
+  }
   }
 
   const handleRemove = () => {
