@@ -6,7 +6,7 @@ import { Link, useLocation} from "react-router-dom";
 
 
 
-export default function Navbar({setTriggerSideBar, counterItems, search, setSearch, isLoggedIn}) {
+export default function Navbar({setTriggerSideBar, counterItems, search, setSearch, isLoggedIn, wallet}) {
     const location = useLocation()
 
     const isCart = location.pathname.includes('/cart')
@@ -55,6 +55,7 @@ export default function Navbar({setTriggerSideBar, counterItems, search, setSear
                 )}             
                 
                 <div className="flex justify-center items-center ">
+                    <div className="font-bold h-full text-xl flex justify-center items-center p-3 ">${wallet}</div>
                     <Link className={`${isCart || isWishlist || isAccount? 'flex justify-center items-center' : 'hidden'} `} to={'/'}><FontAwesomeIcon className="h-6 w-6 hover:cursor-pointer p-3" icon={faHouse}/></Link>
                     <Link onClick={handlingClickingHeart} className="flex justify-center items-center" to={'/wishlist'}><FontAwesomeIcon className="h-6 w-6 hover:cursor-pointer p-3" icon={faHeart}/></Link>
                     <Link to={navigateTo}><FontAwesomeIcon className="h-6 w-6 hover:cursor-pointer p-3 flex justify-center items-center" icon={faCircleUser}/></Link>

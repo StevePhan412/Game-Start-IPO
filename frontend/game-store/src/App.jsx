@@ -16,10 +16,12 @@ function App() {
   const location = useLocation()
   const [triggerSiderBar, setTriggerSideBar] = useState(false)
   const [counterItems, setCounterItems] = useState(0)
+  const [userName, setUserName] = useState()
   const [search, setSearch] = useState('')
   const [selectedPrice, setSelectedPrice] = useState('none')
   const [loggedIn, setLoggedIn] = useState(false)
   const [loggedInUser, setLoggedInUser] = useState()
+  const [wallet, setWallet] = useState(0)
   console.log(loggedInUser)
 
   const isSignIn = location.pathname.includes('/signin')
@@ -58,7 +60,7 @@ function App() {
     <div className='relative min-w-[400px] select-none'>
     {(!isSignIn && !isSingnUp) && 
       (
-        <Navbar setTriggerSideBar={setTriggerSideBar} counterItems={counterItems} search={search} setSearch={setSearch} isLoggedIn={loggedIn} loggedInUser={loggedInUser}/>
+        <Navbar setTriggerSideBar={setTriggerSideBar} counterItems={counterItems} search={search} setSearch={setSearch} isLoggedIn={loggedIn} wallet={wallet}/>
       )
     }
       <SideBar triggerSiderBar={triggerSiderBar} setTriggerSideBar={setTriggerSideBar} selectedPrice={selectedPrice} setSelectedPrice={setSelectedPrice}/>
@@ -66,13 +68,13 @@ function App() {
         <div className='w-[1500px] '>
         <Routes>
             <Route path='/' element={<LandingPage search={search} setCounterItems={setCounterItems} selectedPrice={selectedPrice} isLoggedIn={loggedIn} loggedInUser={loggedInUser}/>}/>
-            <Route path='/signin' element={<SignIn setLoggedIn={setLoggedIn} setLoggedInUser={setLoggedInUser}/>}/>
+            <Route path='/signin' element={<SignIn setLoggedIn={setLoggedIn} setLoggedInUser={setLoggedInUser} setUserName={setUserName} setWallet={setWallet}/>}/>
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/signin/changepassword' element={<ChangePassword/>}/>
             <Route path='/signin/resetpassword' element={<ResetPassword/>}/>
-            <Route path='/cart' element={<Cart loggedInUser={loggedInUser} setCounterItems={setCounterItems}/>}/>
+            <Route path='/cart' element={<Cart loggedInUser={loggedInUser} setCounterItems={setCounterItems} wallet={wallet} setWallet={setWallet}/>}/>
             <Route path='/wishlist' element={<Wishlist loggedInUser={loggedInUser} setCounterItems={setCounterItems}/>}/>
-            <Route path='/account' element={<Account setLoggedIn={setLoggedIn}/>}/>
+            <Route path='/account' element={<Account setLoggedIn={setLoggedIn} userName={userName} loggedInUser={loggedInUser} setWallet={setWallet}/>}/>
           </Routes>
         </div>
       </div> 

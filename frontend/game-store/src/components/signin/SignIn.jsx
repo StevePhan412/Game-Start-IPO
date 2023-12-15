@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 import User from './User';
 
-export default function SignIn({setLoggedIn, setLoggedInUser}) {
+export default function SignIn({setLoggedIn, setLoggedInUser, setUserName, setWallet}) {
   const [users, setUsers] = useState([])
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,11 +32,13 @@ export default function SignIn({setLoggedIn, setLoggedInUser}) {
         const loggedInUser = new User(user.id)
         setLoggedIn(true)
         setLoggedInUser(loggedInUser)
+        setUserName(user.username)
+        setWallet(user.wallet)
         navigate('/account')
       }
       else{
         alert('Invalid email or password')
-      }
+      }   
       
     }
     catch(error){
@@ -67,9 +69,9 @@ export default function SignIn({setLoggedIn, setLoggedInUser}) {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="flex justify-end items-center w-full mt-[10px]">
-            <Link className="text-lg text-gray-400 hover:underline" to={'/signin/changepassword'}>
+           {/*<Link className="text-lg text-gray-400 hover:underline" to={'/signin/changepassword'}>
               Forgot Password?
-            </Link>
+            </Link>*/}
           </div>
           <button type="submit" className="w-full h-[50px] bg-cyan-500 text-white mt-5 rounded-xl">
             Sign In
